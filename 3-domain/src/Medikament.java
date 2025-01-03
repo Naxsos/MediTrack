@@ -19,13 +19,13 @@ public class Medikament {
 
     private String hersteller;
 
-    private String darreichungsform;
+    private Darreichungsform darreichungsform;
 
     private Dosierung dosierung;
 
     private YearMonth ablaufDatum;
 
-    public Medikament(UniqueIdentifier ui, int pzn, String serienNummer, String chargenNummer, String medikamentenName, String wirkstoffBezeichnung, String hersteller, String darreichungsform, Dosierung dosierung, YearMonth ablaufDatum) {
+    public Medikament(UniqueIdentifier ui, int pzn, String serienNummer, String chargenNummer, String medikamentenName, String wirkstoffBezeichnung, String hersteller, Darreichungsform darreichungsform, Dosierung dosierung, YearMonth ablaufDatum) {
         if (ui == null) {
             throw new IllegalArgumentException("Pharmazeutische Kennung darf nicht leer sein");
         }
@@ -106,11 +106,11 @@ public class Medikament {
         this.hersteller = hersteller;
     }
 
-    public String getDarreichungsform() {
+    public Darreichungsform getDarreichungsform() {
         return darreichungsform;
     }
 
-    public void setDarreichungsform(String darreichungsform) {
+    public void setDarreichungsform(Darreichungsform darreichungsform) {
         this.darreichungsform = darreichungsform;
     }
 

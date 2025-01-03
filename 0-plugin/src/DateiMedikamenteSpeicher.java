@@ -4,6 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.time.YearMonth;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,5 +47,30 @@ public class DateiMedikamenteSpeicher implements MedikamenteSpeicher {
         } catch (NumberFormatException | IOException ex) {
             System.err.printf("Fehler beim Laden der Datei: %s%n", ex.getLocalizedMessage());
         }
+    }
+
+    @Override
+    public Medikament findeMedikamentViaUI(UniqueIdentifier ui) {
+        return null;
+    }
+
+    @Override
+    public List<Medikament> findeViaMedikamentName(String name) {
+        return List.of();
+    }
+
+    @Override
+    public List<Medikament> findeViaWirkstoff(String wirkstoff) {
+        return List.of();
+    }
+
+    @Override
+    public List<Medikament> findByVerfallsdatumBefore(YearMonth date) {
+        return List.of();
+    }
+
+    @Override
+    public List<Medikament> findeAlleMedikamente() {
+        return List.of();
     }
 }
