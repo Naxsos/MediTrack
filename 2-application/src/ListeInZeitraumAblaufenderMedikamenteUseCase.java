@@ -2,11 +2,11 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InXTagenAblaufendeMedikamenteUseCase {
+public class ListeInZeitraumAblaufenderMedikamenteUseCase {
 
     MedikamenteSpeicher medikamenteSpeicher;
 
-    public InXTagenAblaufendeMedikamenteUseCase(MedikamenteSpeicher medikamenteSpeicher) {
+    public ListeInZeitraumAblaufenderMedikamenteUseCase(MedikamenteSpeicher medikamenteSpeicher) {
         this.medikamenteSpeicher = medikamenteSpeicher;
     }
 
