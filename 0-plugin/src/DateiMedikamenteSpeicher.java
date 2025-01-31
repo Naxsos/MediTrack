@@ -1,10 +1,13 @@
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.YearMonth;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -71,6 +74,27 @@ public class DateiMedikamenteSpeicher implements MedikamenteSpeicher {
 
     @Override
     public List<Medikament> findeAlleMedikamente() {
+        ErstelleMedikamentUseCase erstelleMedikamentUseCase =  new ErstelleMedikamentUseCase(this);
+        List<Medikament> alleMedikamente = new ArrayList<>();
+        try {
+            List<String>  alleEinträgeInZeichenkettenForm = Files.readAllLines(Paths.get(datei.getPath()));
+            for (String eintrag : alleEinträgeInZeichenkettenForm){
+                List<String> listeFuerWerteProEintrag = List.of(eintrag.split(","));
+                UniqueIdentifier ui = UniqueIdentifier.fromString(listeFuerWerteProEintrag.get(0));
+                String chargenNummer = listeFuerWerteProEintrag.get(1).trim();
+                String medikamentenName =  listeFuerWerteProEintrag.get(2).trim();
+                String wirkstoffBezeichnung = listeFuerWerteProEintrag.get(3).trim();
+                String hersteller = listeFuerWerteProEintrag.get(4).trim();
+                String darreichungsform = listeFuerWerteProEintrag.get(5).trim();
+                String dosierung = listeFuerWerteProEintrag.get(6).trim();
+                String ablaufDatum = listeFuerWerteProEintrag.get(7).trim();
+                Medikament ausgeleseneZeileAlsMedikament = erstelleMedikamentUseCase.erstelleMedikament(ui.getPzn(), ui.getSerienNummer(), chargenNummer, medikamentenName, wirkstoffBezeichnung, ablaufDatum);
+                alleMedikamente.add(ausgeleseneZeileAlsMedikament);
+            }
+
+        } catch (IOException e) {
+
+        }
         return List.of();
     }
 }

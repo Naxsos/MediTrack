@@ -1,5 +1,12 @@
-01 342391 21 ABC1234567890XYZ 10 BATCH001 17 02-2025, BATCH001, Kreativer Name mit ganz vielen xyz, Zanax, null, null, null, 2025-02
-01 342391 21 ABC1234567890XYZ 10 BATCH001 17 02-2025, BATCH001, Kreativer Name mit ganz vielen xyz, Zanax, null, null, null, 2025-02
-01 342391 21 ABC1234567890XYZ 10 BATCH001 17 02-2025, BATCH001, Kreativer Name mit ganz vielen xyz, Zanax, null, null, null, 2025-02
-01 342391 21 ABC1234567890XYZ 10 BATCH001 17 02-2025, BATCH001, Kreativer Name mit ganz vielen xyz, Zanax, null, null, null, 2025-02
-01 342391 21 ABC1234567890XYZ 10 BATCH001 17 02-2025, BATCH001, Kreativer Name mit ganz vielen xyz, Zanax, null, null, null, 2025-02
+01 21234567 21 ABC1234567890XYZ 10 BATCH001 17 2025-02, BATCH001, Kreativer Name mit ganz vielen xyz, Zanax, null, null, null, 2025-02
+01 23414564 21 XYZ1234234290ABC 10 BATCH004 17 2025-06, BATCH004, Kreativer Name mit ganz vielen abx, Soledum, null, null, null, 2025-06
+01 21234567 21 ABC1234567890XYZ 10 BATCH001 17 2025-02, BATCH001, Kreativer Name mit ganz vielen xyz, Zanax, null, null, null, 2025-02
+01 23414564 21 XYZ1234234290ABC 10 BATCH004 17 2025-06, BATCH004, Kreativer Name mit ganz vielen abx, Soledum, null, null, null, 2025-06
+01 21234567 21 ABC1234567890XYZ 10 BATCH001 17 2025-02, BATCH001, Kreativer Name mit ganz vielen xyz, Zanax, null, null, null, 2025-02
+01 23414564 21 XYZ1234234290ABC 10 BATCH004 17 2025-06, BATCH004, Kreativer Name mit ganz vielen abx, Soledum, null, null, null, 2025-06
+01 21234567 21 ABC1234567890XYZ 10 BATCH001 17 2025-02, BATCH001, Kreativer Name mit ganz vielen xyz, Zanax, null, null, null, 2025-02
+01 23414564 21 XYZ1234234290ABC 10 BATCH004 17 2025-06, BATCH004, Kreativer Name mit ganz vielen abx, Soledum, null, null, null, 2025-06
+01 21234567 21 ABC1234567890XYZ 10 BATCH001 17 2025-02, BATCH001, Kreativer Name mit ganz vielen xyz, Zanax, null, null, null, 2025-02
+01 23414564 21 XYZ1234234290ABC 10 BATCH004 17 2025-06, BATCH004, Kreativer Name mit ganz vielen abx, Soledum, null, null, null, 2025-06
+01 21234567 21 ABC1234567890XYZ 10 BATCH001 17 2025-02, BATCH001, Kreativer Name mit ganz vielen xyz, Zanax, null, null, null, 2025-02
+01 23414564 21 XYZ1234234290ABC 10 BATCH004 17 2025-06, BATCH004, Kreativer Name mit ganz vielen abx, Soledum, null, null, null, 2025-06

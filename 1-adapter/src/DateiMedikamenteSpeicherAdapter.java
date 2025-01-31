@@ -20,26 +20,26 @@ public class DateiMedikamenteSpeicherAdapter implements MedikamenteSpeicher {
 
     @Override
     public Medikament findeMedikamentViaUI(UniqueIdentifier ui) {
-        return null;
+        return dateiMedikamenteSpeicher.findeMedikamentViaUI(ui);
     }
 
     @Override
     public List<Medikament> findeViaMedikamentName(String name) {
-        return List.of();
+        return dateiMedikamenteSpeicher.findeViaMedikamentName(name);
     }
 
     @Override
     public List<Medikament> findeViaWirkstoff(String wirkstoff) {
-        return List.of();
+        return dateiMedikamenteSpeicher.findeViaWirkstoff(wirkstoff);
     }
 
     @Override
     public List<Medikament> findByVerfallsdatumBefore(YearMonth date) {
-        return List.of();
+        return dateiMedikamenteSpeicher.findByVerfallsdatumBefore(date);
     }
 
     @Override
     public List<Medikament> findeAlleMedikamente() {
-        return List.of();
+        return dateiMedikamenteSpeicher.findeAlleMedikamente();
     }
 }
