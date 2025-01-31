@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AbgelaufenenMedikamenteUseCase {
-    MedikamenteSpeicher medikamenteSpeicher;
+    private MedikamenteSpeicher medikamenteSpeicher;
 
     public AbgelaufenenMedikamenteUseCase(MedikamenteSpeicher medikamenteSpeicher) {
         this.medikamenteSpeicher = medikamenteSpeicher;

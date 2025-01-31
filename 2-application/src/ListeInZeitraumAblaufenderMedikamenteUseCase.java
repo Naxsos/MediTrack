@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ListeInZeitraumAblaufenderMedikamenteUseCase {
 
-    MedikamenteSpeicher medikamenteSpeicher;
+    private MedikamenteSpeicher medikamenteSpeicher;
 
     public ListeInZeitraumAblaufenderMedikamenteUseCase(MedikamenteSpeicher medikamenteSpeicher) {
         this.medikamenteSpeicher = medikamenteSpeicher;

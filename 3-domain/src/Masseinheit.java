@@ -9,8 +9,8 @@ public enum Masseinheit {
     EINHEITEN("I.E.", "Wird zum beispiel für Haparinspritzen genutzt");
 
 
-    String kurzform;
-    String beschreibung;
+    private String kurzform;
+    private String beschreibung;
 
     Masseinheit(String kurzform, String beschreibung){
         this.kurzform = kurzform;

@@ -1,11 +1,11 @@
 public class Dosierung {
 
-    Masseinheit masseinheit;
-    int wertMasseinheit;
-    Intervall intervall;
-    int wertIntervall;
-    Zeitperiode zeitperiode;
-    int Wertzeitperiode;
+    private Masseinheit masseinheit;
+    private int wertMasseinheit;
+    private Intervall intervall;
+    private int wertIntervall;
+    private Zeitperiode zeitperiode;
+    private int Wertzeitperiode;
 
     public Dosierung(Masseinheit masseinheit, int wertMasseinheit, Intervall intervall, int wertIntervall, Zeitperiode zeitperiode, int wertzeitperiode) {
         this.masseinheit = masseinheit;

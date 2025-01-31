@@ -1,7 +1,7 @@
 
 public class EntferneMedikamentUseCase {
 
-    MedikamenteSpeicher medikamenteSpeicher;
+    private MedikamenteSpeicher medikamenteSpeicher;
 
     public EntferneMedikamentUseCase(MedikamenteSpeicher medikamenteSpeicher) {
         this.medikamenteSpeicher = medikamenteSpeicher;

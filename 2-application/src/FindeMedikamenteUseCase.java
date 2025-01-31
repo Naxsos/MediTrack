@@ -2,7 +2,7 @@ import java.util.List;
 
 public class FindeMedikamenteUseCase {
 
-    MedikamenteSpeicher medikamenteSpeicher;
+    private MedikamenteSpeicher medikamenteSpeicher;
 
     public FindeMedikamenteUseCase(MedikamenteSpeicher medikamenteSpeicher) {
         this.medikamenteSpeicher = medikamenteSpeicher;
