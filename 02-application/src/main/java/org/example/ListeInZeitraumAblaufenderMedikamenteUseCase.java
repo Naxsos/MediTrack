@@ -1,5 +1,6 @@
 package org.example;
 
+import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +13,16 @@ public class ListeInZeitraumAblaufenderMedikamenteUseCase {
         this.medikamenteSpeicher = medikamenteSpeicher;
     }
 
-    public List<Medikament> wirdIn1WochenAblaufen(){
+    public List<Medikament> wirdIn1WocheAblaufen() {
         List<Medikament> alleMedikamenteListe = medikamenteSpeicher.findeAlleMedikamente();
-        List<Medikament> wirdAblaufenListe = new ArrayList<Medikament>();
+        List<Medikament> wirdAblaufenListe = new ArrayList<>();
+        LocalDate heute = LocalDate.now();
+        LocalDate inZweiWochen = heute.plusWeeks(1);
+
         for (Medikament medikament : alleMedikamenteListe) {
-            if (DatumChecker.istDatumheuteInXWochen(medikament.getAblaufDatum(), 1) ) {
+            LocalDate ablaufDatum = LocalDateParser.parseJahrMonatZuVollemDatum(medikament.getAblaufDatum());
+            // Optional: Sicherstellen, dass das Medikament noch nicht abgelaufen ist
+            if (!ablaufDatum.isBefore(heute) && ablaufDatum.isBefore(inZweiWochen)) {
                 wirdAblaufenListe.add(medikament);
             }
         }
@@ -24,28 +30,37 @@ public class ListeInZeitraumAblaufenderMedikamenteUseCase {
     }
 
     // HIER WURDE DRY VERLETZT... DAS MUSS ANGEPASST WERDEN
-    public List<Medikament> wirdIn2WochenAblaufen(){
+    public List<Medikament> wirdIn2WochenAblaufen() {
         List<Medikament> alleMedikamenteListe = medikamenteSpeicher.findeAlleMedikamente();
-        List<Medikament> wirdAblaufenListe = new ArrayList<Medikament>();
+        List<Medikament> wirdAblaufenListe = new ArrayList<>();
+        LocalDate heute = LocalDate.now();
+        LocalDate inZweiWochen = heute.plusWeeks(2);
+
         for (Medikament medikament : alleMedikamenteListe) {
-            if (DatumChecker.istDatumheuteInXWochen(medikament.getAblaufDatum(), 2) ) {
+            LocalDate ablaufDatum = LocalDateParser.parseJahrMonatZuVollemDatum(medikament.getAblaufDatum());
+            // Optional: Sicherstellen, dass das Medikament noch nicht abgelaufen ist
+            if (!ablaufDatum.isBefore(heute) && ablaufDatum.isBefore(inZweiWochen)) {
                 wirdAblaufenListe.add(medikament);
             }
         }
         return wirdAblaufenListe;
     }
 
-    public List<Medikament> wirdIn4WochenAblaufen(){
+    public List<Medikament> wirdIn4WochenAblaufen() {
         List<Medikament> alleMedikamenteListe = medikamenteSpeicher.findeAlleMedikamente();
-        List<Medikament> wirdAblaufenListe = new ArrayList<Medikament>();
+        List<Medikament> wirdAblaufenListe = new ArrayList<>();
+        LocalDate heute = LocalDate.now();
+        LocalDate inZweiWochen = heute.plusWeeks(4);
+
         for (Medikament medikament : alleMedikamenteListe) {
-            if (DatumChecker.istDatumHeuteInXMonaten(medikament.getAblaufDatum(), 1) ) {
+            LocalDate ablaufDatum = LocalDateParser.parseJahrMonatZuVollemDatum(medikament.getAblaufDatum());
+            // Optional: Sicherstellen, dass das Medikament noch nicht abgelaufen ist
+            if (!ablaufDatum.isBefore(heute) && ablaufDatum.isBefore(inZweiWochen)) {
                 wirdAblaufenListe.add(medikament);
             }
         }
         return wirdAblaufenListe;
     }
-
     public List<Medikament> wirdAblaufenzuBestimmtemDatum(YearMonth datum){
         List<Medikament> alleMedikamenteListe = medikamenteSpeicher.findeAlleMedikamente();
         List<Medikament> wirdAblaufenListe = new ArrayList<Medikament>();

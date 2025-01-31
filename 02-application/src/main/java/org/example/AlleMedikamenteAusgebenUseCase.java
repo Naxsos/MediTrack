@@ -2,10 +2,10 @@ package org.example;
 
 import java.util.List;
 
-public class ListeAllerMedikamenteUseCase {
+public class AlleMedikamenteAusgebenUseCase {
     private MedikamenteSpeicher medikamenteSpeicher;
 
-    public ListeAllerMedikamenteUseCase(MedikamenteSpeicher medikamenteSpeicher) {
+    public AlleMedikamenteAusgebenUseCase(MedikamenteSpeicher medikamenteSpeicher) {
         this.medikamenteSpeicher = medikamenteSpeicher;
     }
 

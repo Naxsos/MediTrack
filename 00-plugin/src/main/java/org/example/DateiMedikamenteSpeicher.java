@@ -1,5 +1,6 @@
 package org.example;
 
+import javax.swing.text.html.parser.Parser;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -74,7 +75,7 @@ public class DateiMedikamenteSpeicher implements MedikamenteSpeicher {
 
     @Override
     public List<Medikament> findeAlleMedikamente() {
-        ErstelleMedikamentUseCase erstelleMedikamentUseCase =  new ErstelleMedikamentUseCase(this);
+
         List<Medikament> alleMedikamente = new ArrayList<>();
         try {
             List<String>  alleEinträgeInZeichenkettenForm = Files.readAllLines(Paths.get(datei.getPath()));
@@ -87,14 +88,14 @@ public class DateiMedikamenteSpeicher implements MedikamenteSpeicher {
                 String hersteller = listeFuerWerteProEintrag.get(4).trim();
                 String darreichungsform = listeFuerWerteProEintrag.get(5).trim();
                 String dosierung = listeFuerWerteProEintrag.get(6).trim();
-                String ablaufDatum = listeFuerWerteProEintrag.get(7).trim();
-                Medikament ausgeleseneZeileAlsMedikament = erstelleMedikamentUseCase.erstelleMedikament(ui.getPzn(), ui.getSerienNummer(), chargenNummer, medikamentenName, wirkstoffBezeichnung, ablaufDatum);
+                YearMonth ablaufDatum = LocalDateParser.parseDate(listeFuerWerteProEintrag.get(7).trim(), Konstanten.ABLAUF_DATUM_FORMAT);
+                Medikament ausgeleseneZeileAlsMedikament = new Medikament(ui, ui.getPzn(), ui.getSerienNummer(), chargenNummer, medikamentenName, wirkstoffBezeichnung, ablaufDatum);
                 alleMedikamente.add(ausgeleseneZeileAlsMedikament);
             }
 
         } catch (IOException e) {
 
         }
-        return List.of();
+        return alleMedikamente;
     }
 }

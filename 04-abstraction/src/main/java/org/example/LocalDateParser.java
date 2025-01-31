@@ -1,6 +1,7 @@
 package org.example;
 
 import java.time.YearMonth;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -15,4 +16,9 @@ public class LocalDateParser {
             return null; // Or handle appropriately (e.g., throw a custom exception)
         }
     }
+
+    public static LocalDate parseJahrMonatZuVollemDatum(YearMonth yearMonth) {
+            return yearMonth.atDay(1);
+    }
+
 }
