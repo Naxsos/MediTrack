@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/00-plugin/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/00-plugin/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/01-adapter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/01-adapter/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/02-application/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/02-application/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/03-domain/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/03-domain/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/04-abstraction/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/04-abstraction/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
