@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/0-plugin/0-plugin.iml" filepath="$PROJECT_DIR$/0-plugin/0-plugin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/1-adapter/1-adapter.iml" filepath="$PROJECT_DIR$/1-adapter/1-adapter.iml" />
-      <module fileurl="file://$PROJECT_DIR$/2-application/2-application.iml" filepath="$PROJECT_DIR$/2-application/2-application.iml" />
-      <module fileurl="file://$PROJECT_DIR$/3-domain/3-domain.iml" filepath="$PROJECT_DIR$/3-domain/3-domain.iml" />
-      <module fileurl="file://$PROJECT_DIR$/4-abstraction/4-abstraction.iml" filepath="$PROJECT_DIR$/4-abstraction/4-abstraction.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/MediTrack.iml" filepath="$PROJECT_DIR$/.idea/MediTrack.iml" />
     </modules>
   </component>
