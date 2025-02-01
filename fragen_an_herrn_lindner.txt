@@ -1,3 +1,6 @@
 Gehört eine Klasse "Erinerung" in die Domäne oder nur in die Application Schicht? ->
 Application schicht dachte ich, ist nur für Use-Cases und Services?
 
+
+
+

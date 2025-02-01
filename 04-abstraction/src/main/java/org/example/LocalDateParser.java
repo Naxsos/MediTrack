@@ -13,7 +13,7 @@ public class LocalDateParser {
             return YearMonth.parse(dateStr, formatter);
         } catch (DateTimeParseException e) {
             System.err.println("Invalid date format: " + e.getMessage());
-            return null; // Or handle appropriately (e.g., throw a custom exception)
+            throw e; // Or handle appropriately (e.g., throw a custom exception)
         }
     }
 
