@@ -17,20 +17,18 @@ public class NotionBenachrichtigung {
                     .filename(".env")
                     .load();
 
-            URL url = new URL("https://api.notion.com/v1/pages"); // Ersetze durch den korrekten Endpunkt
+            URL url = new URL("https://api.notion.com/v1/pages");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
-            connection.setRequestProperty("Authorization", "Bearer " + dotenv.get("NOTION_API_KEY")); // Ersetze NOTION_API_KEY
+            connection.setRequestProperty("Authorization", "Bearer " + dotenv.get("NOTION_API_KEY"));
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setRequestProperty("Notion-Version", "2022-06-28");
             connection.setDoOutput(true);
             System.out.println(connection.toString());
 
-            // JSON-Body erstellen (verwende hier die createJson Methode aus dem vorherigen Beispiel)
             JsonObject jsonBody = createJson();
             String jsonInputString = jsonBody.toString();
 
-            // JSON-Body in die Anfrage schreiben
             try (OutputStream os = connection.getOutputStream()) {
                 byte[] input = jsonInputString.toString().getBytes("utf-8");
                 os.write(input, 0, input.length);

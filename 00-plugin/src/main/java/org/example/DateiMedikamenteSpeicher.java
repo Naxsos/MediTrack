@@ -102,7 +102,7 @@ public class DateiMedikamenteSpeicher implements MedikamenteSpeicher {
                 alleMedikamente.add(parseMedikament(eintrag));
             }
         } catch (IOException e) {
-            // Fehlerbehandlung
+            System.out.println(e.getMessage());
         }
         return alleMedikamente;
     }

@@ -13,7 +13,6 @@ public class ErstelleMedikamentUseCase {
         YearMonth formatiertesAblaufDatum = LocalDateParser.parseDate(ablaufDatum, Konstanten.ABLAUF_DATUM_FORMAT);
         UniqueIdentifier ui = erstelleUI(pzn,serienNummer, chargenNummer,formatiertesAblaufDatum);
 
-        //Medikament medikament = new Medikament(ui,pzn,serienNummer, chargenNummer, medikamentenName,wirkstoffBezeichnung,formatiertesAblaufDatum);
         Medikament medikament = new Medikament.Builder(ui)
                 .serienNummer(new Seriennummer(serienNummer))
                 .pzn(new PZN(pzn))

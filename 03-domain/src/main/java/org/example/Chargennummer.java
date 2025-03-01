@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Objects;
 
-public final class Chargennummer { // Klasse als final deklariert
+public final class Chargennummer {
     private final String nummer;
 
     public Chargennummer(String nummer) {

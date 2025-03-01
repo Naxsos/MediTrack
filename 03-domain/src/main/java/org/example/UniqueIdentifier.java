@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class UniqueIdentifier {
-    // ProduktCode
     private int pzn;
     private String serienNummer;
     private String chargenNummer;
@@ -46,25 +45,21 @@ public class UniqueIdentifier {
         }
 
         try {
-            // Validate and parse PZN
             if (!Konstanten.PREFIX_PZN.equals(tokens[0])) {
                 throw new IllegalArgumentException("Invalid prefix for PZN. Expected '" + Konstanten.PREFIX_PZN + "', found '" + tokens[0] + "'");
             }
             int pzn = Integer.parseInt(tokens[1]);
 
-            // Validate and parse Seriennummer
             if (!Konstanten.PREFIX_SERIENNUMMER.equals(tokens[2])) {
                 throw new IllegalArgumentException("Invalid prefix for Seriennummer. Expected '" + Konstanten.PREFIX_SERIENNUMMER + "', found '" + tokens[2] + "'");
             }
             String serienNummer = tokens[3];
 
-            // Validate and parse Chargennummer
             if (!Konstanten.PREFIX_CHARGENNUMMER.equals(tokens[4])) {
                 throw new IllegalArgumentException("Invalid prefix for Chargennummer. Expected '" + Konstanten.PREFIX_CHARGENNUMMER + "', found '" + tokens[4] + "'");
             }
             String chargenNummer = tokens[5];
 
-            // Validate and parse Ablaufdatum
             if (!Konstanten.PREFIX_ABLAUF_DATUM.equals(tokens[6])) {
                 throw new IllegalArgumentException("Invalid prefix for Ablaufdatum. Expected '" + Konstanten.PREFIX_ABLAUF_DATUM + "', found '" + tokens[6] + "'");
             }
