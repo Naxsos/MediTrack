@@ -73,29 +73,31 @@ public class DateiMedikamenteSpeicher implements MedikamenteSpeicher {
         return List.of();
     }
 
+    private Medikament parseMedikament(String eintrag) {
+        List<String> listeFuerWerteProEintrag = List.of(eintrag.split(","));
+        UniqueIdentifier ui = UniqueIdentifier.fromString(listeFuerWerteProEintrag.get(0));
+        String chargenNummer = listeFuerWerteProEintrag.get(1).trim();
+        String medikamentenName = listeFuerWerteProEintrag.get(2).trim();
+        String wirkstoffBezeichnung = listeFuerWerteProEintrag.get(3).trim();
+        String hersteller = listeFuerWerteProEintrag.get(4).trim();
+        String darreichungsform = listeFuerWerteProEintrag.get(5).trim();
+        String dosierung = listeFuerWerteProEintrag.get(6).trim();
+        YearMonth ablaufDatum = LocalDateParser.parseDate(listeFuerWerteProEintrag.get(7).trim(), Konstanten.ABLAUF_DATUM_FORMAT);
+        return new Medikament(ui, ui.getPzn(), ui.getSerienNummer(), chargenNummer, medikamentenName, wirkstoffBezeichnung, ablaufDatum);
+    }
+
     @Override
     public List<Medikament> findeAlleMedikamente() {
-
         List<Medikament> alleMedikamente = new ArrayList<>();
         try {
-            List<String>  alleEinträgeInZeichenkettenForm = Files.readAllLines(Paths.get(datei.getPath()));
+            List<String> alleEinträgeInZeichenkettenForm = Files.readAllLines(Paths.get(datei.getPath()));
             for (String eintrag : alleEinträgeInZeichenkettenForm){
-                List<String> listeFuerWerteProEintrag = List.of(eintrag.split(","));
-                UniqueIdentifier ui = UniqueIdentifier.fromString(listeFuerWerteProEintrag.get(0));
-                String chargenNummer = listeFuerWerteProEintrag.get(1).trim();
-                String medikamentenName =  listeFuerWerteProEintrag.get(2).trim();
-                String wirkstoffBezeichnung = listeFuerWerteProEintrag.get(3).trim();
-                String hersteller = listeFuerWerteProEintrag.get(4).trim();
-                String darreichungsform = listeFuerWerteProEintrag.get(5).trim();
-                String dosierung = listeFuerWerteProEintrag.get(6).trim();
-                YearMonth ablaufDatum = LocalDateParser.parseDate(listeFuerWerteProEintrag.get(7).trim(), Konstanten.ABLAUF_DATUM_FORMAT);
-                Medikament ausgeleseneZeileAlsMedikament = new Medikament(ui, ui.getPzn(), ui.getSerienNummer(), chargenNummer, medikamentenName, wirkstoffBezeichnung, ablaufDatum);
-                alleMedikamente.add(ausgeleseneZeileAlsMedikament);
+                alleMedikamente.add(parseMedikament(eintrag));
             }
-
         } catch (IOException e) {
-
+            // Fehlerbehandlung
         }
         return alleMedikamente;
     }
+
 }
