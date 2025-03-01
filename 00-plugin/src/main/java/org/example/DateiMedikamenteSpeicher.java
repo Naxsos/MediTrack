@@ -83,7 +83,14 @@ public class DateiMedikamenteSpeicher implements MedikamenteSpeicher {
         String darreichungsform = listeFuerWerteProEintrag.get(5).trim();
         String dosierung = listeFuerWerteProEintrag.get(6).trim();
         YearMonth ablaufDatum = LocalDateParser.parseDate(listeFuerWerteProEintrag.get(7).trim(), Konstanten.ABLAUF_DATUM_FORMAT);
-        return new Medikament(ui, ui.getPzn(), ui.getSerienNummer(), chargenNummer, medikamentenName, wirkstoffBezeichnung, ablaufDatum);
+        return new Medikament.Builder(ui)
+                .serienNummer(new Seriennummer(ui.getSerienNummer()))
+                .pzn(new PZN(ui.getPzn()))
+                .chargenNummer(new Chargennummer(chargenNummer))
+                .medikamentenName(medikamentenName)
+                .wirkstoffBezeichnung(wirkstoffBezeichnung)
+                .ablaufDatum(ablaufDatum)
+                .build();
     }
 
     @Override
