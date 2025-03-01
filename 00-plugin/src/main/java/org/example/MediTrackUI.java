@@ -248,7 +248,7 @@ public class MediTrackUI extends JFrame {
             listModel.addElement(medikament.toString()); // Medikamente zur JList hinzufügen
         }
         // Bald ablaufende Medikamente
-        List<Medikament> baldAblaufendeMedikamente = listeInZeitraumAblaufenderMedikamenteUseCase.wirdIn2WochenAblaufen();
+        List<Medikament> baldAblaufendeMedikamente = listeInZeitraumAblaufenderMedikamenteUseCase.findeMedikamenteDieInXWochenAblaufen(2);
         listModelBaldAblaufend.clear(); // JList leeren
         for (Medikament medikament: baldAblaufendeMedikamente) {
             listModelBaldAblaufend.addElement(medikament); // Medikamente zur JList hinzufügen

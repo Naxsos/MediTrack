@@ -1,5 +1,6 @@
 package org.example;
 
+import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.Objects;
 
@@ -132,8 +133,15 @@ public class Medikament {
     }
 
     // Domänenlogik
-    public boolean isExpired() {
+    public boolean istAbgelaufen() {
         return YearMonth.now().isAfter(this.ablaufDatum);
+    }
+
+    public boolean laeuftInXWochenAb(int wochen) {
+        LocalDate heute = LocalDate.now();
+        LocalDate inXWochen = heute.plusWeeks(wochen);
+        LocalDate ablaufDatum = LocalDateParser.parseJahrMonatZuVollemDatum(this.ablaufDatum);
+        return !ablaufDatum.isBefore(heute) && ablaufDatum.isBefore(inXWochen);
     }
 
     @Override

@@ -12,7 +12,7 @@ public class AbgelaufeneMedikamenteUseCase {
 
     public List<Medikament> abgelaufeneMedikamente() {
         return medikamenteSpeicher.findeAlleMedikamente().stream()
-                .filter(Medikament::isExpired)
+                .filter(Medikament::istAbgelaufen)
                 .collect(Collectors.toList());
     }
 }
