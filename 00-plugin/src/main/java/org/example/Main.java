@@ -25,15 +25,14 @@ public class Main {
         sendeErinnerungMedikamentlaeuftAb.sendeErinnerungen();
         entfernenService.medikamentEntfernen("01 23414564 21 XYZ1234234290ABC 10 BATCH004 17 06-2025");
 
-        SwingUtilities.invokeLater(() ->
-                new MediTrackUI(
-                    erstellenService,
-                    listeAllerMedikamenteUseCase,
-                    entfernenService,
-                    baldAblaufendeMedikamenteUseCase,
-                    abgelaufeneMedikamentUseCase
-                )
+        MedikamenteController controller = new MedikamenteController(
+            erstellenService,
+            listeAllerMedikamenteUseCase,
+            entfernenService,
+            baldAblaufendeMedikamenteUseCase,
+            abgelaufeneMedikamentUseCase
         );
+        new MediTrackUI(controller);
         //NotionBenachrichtigung notionBenachrichtigung = new NotionBenachrichtigung();
         //notionBenachrichtigung.sendeNotionBenachrichtigung("test","2525-12");
         //AllgemeinerScheduler allgemeinerScheduler = new AllgemeinerScheduler(dateiSpeicherAdapter);
