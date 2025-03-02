@@ -1,6 +1,6 @@
 package org.example;
 
-import javax.swing.text.html.parser.Parser;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,7 +10,7 @@ public class MedikamenteController {
     private final EntferneMedikamentUseCase entferneMedikamentUseCase;
     private final ListeInZeitraumAblaufenderMedikamenteUseCase listeInZeitraumAblaufenderMedikamenteUseCase;
     private final AbgelaufeneMedikamenteUseCase abgelaufeneMedikamenteUseCase;
-    private MedikamenteUI ui;
+    private List<MedikamenteUI> ui;
 
     public MedikamenteController(
             ErstelleMedikamentUseCase erstelleMedikamentUseCase,
@@ -24,17 +24,18 @@ public class MedikamenteController {
         this.entferneMedikamentUseCase = entferneMedikamentUseCase;
         this.listeInZeitraumAblaufenderMedikamenteUseCase = listeInZeitraumAblaufenderMedikamenteUseCase;
         this.abgelaufeneMedikamenteUseCase = abgelaufeneMedikamenteUseCase;
+        this.ui = new ArrayList<>();
     }
 
     public void addObserver(MedikamenteUI ui) {
-        this.ui = ui;
+        this.ui.add(ui);
     }
 
     public void initialisiereMedikamentenlisten() {
-        if (ui != null) {
-            ui.aktualisiereMedikamentenliste(convertToStrings(alleMedikamenteAusgebenUseCase.listeAllerMedikamente()));
-            ui.aktualisiereBaldAblaufendeMedikamente(convertToStrings(listeInZeitraumAblaufenderMedikamenteUseCase.findeMedikamenteDieInXWochenAblaufen(2)));
-            ui.aktualisiereAbgelaufeneMedikamente(convertToStrings(abgelaufeneMedikamenteUseCase.abgelaufeneMedikamente()));
+        for (MedikamenteUI medikamente : ui) {
+            medikamente.aktualisiereMedikamentenliste(convertToStrings(alleMedikamenteAusgebenUseCase.listeAllerMedikamente()));
+            medikamente.aktualisiereBaldAblaufendeMedikamente(convertToStrings(listeInZeitraumAblaufenderMedikamenteUseCase.findeMedikamenteDieInXWochenAblaufen(2)));
+            medikamente.aktualisiereAbgelaufeneMedikamente(convertToStrings(abgelaufeneMedikamenteUseCase.abgelaufeneMedikamente()));
         }
     }
 
