@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.List;
+import java.util.Optional;
 
 public class FindeMedikamenteUseCase {
 
@@ -10,7 +11,7 @@ public class FindeMedikamenteUseCase {
         this.medikamenteSpeicher = medikamenteSpeicher;
     }
 
-    public Medikament findeMedikamentViaUI(UniqueIdentifier ui){
+    public Optional<Medikament> findeMedikamentViaUI(UniqueIdentifier ui){
         return medikamenteSpeicher.findeMedikamentViaUI(ui);
     }
     public List<Medikament> findeViaWirkstoff(String wirkstoff){

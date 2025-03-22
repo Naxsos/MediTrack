@@ -12,7 +12,7 @@ public class SendeWarnungMedikamentAbgelaufen {
         this.abgelaufeneMedikamenteUseCase = new AbgelaufeneMedikamenteUseCase(medikamenteSpeicher);
     }
 
-    public void sendeErinnerungen() {
+    public void sendeWarnung() {
         List<Medikament> ablaufendeMedikamente = abgelaufeneMedikamenteUseCase.abgelaufeneMedikamente();
         // (Wer "wirklich" E‑Mails verschicken will, kann hier ein Notification-Interface ansprechen)
         for (Medikament med : ablaufendeMedikamente) {

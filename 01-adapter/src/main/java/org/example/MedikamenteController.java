@@ -41,7 +41,7 @@ public class MedikamenteController {
 
     public void erstelleMedikament(MedikamentDTO dto) {
         erstelleMedikamentUseCase.erstelleMedikament(
-                Integer.parseInt(dto.pzn), dto.seriennummer, dto.chargennummer, dto.name, dto.wirkstoff, dto.ablaufdatum
+                Integer.parseInt(dto.pzn), dto.seriennummer, dto.chargennummer, dto.name, dto.wirkstoff, dto.ablaufdatum, dto.lagerort
         );
         initialisiereMedikamentenlisten();
     }

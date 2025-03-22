@@ -16,6 +16,7 @@ public class Medikament {
     private final Darreichungsform darreichungsform;
     private final Dosierung dosierung;
     private final YearMonth ablaufDatum;
+    private final LagerortID lagerortId;
 
     private Medikament(Builder builder) {
         this.ui = builder.ui;
@@ -28,6 +29,7 @@ public class Medikament {
         this.darreichungsform = builder.darreichungsform;
         this.dosierung = builder.dosierung;
         this.ablaufDatum = builder.ablaufDatum;
+        this.lagerortId = builder.lagerortId;
     }
 
     public UniqueIdentifier getUi() {
@@ -58,6 +60,8 @@ public class Medikament {
         return dosierung;
     }
     public YearMonth getAblaufDatum() {return ablaufDatum;}
+    public LagerortID getLagerortId() {return lagerortId;}
+    
 
     public boolean istAbgelaufen() { return YearMonth.now().isAfter(this.ablaufDatum); }
 
@@ -83,7 +87,7 @@ public class Medikament {
 
     @Override
     public String toString() {
-        return String.format("%s, %s, %s, %s, %s, %s, %s, %s",
+        return String.format("%s, %s, %s, %s, %s, %s, %s, %s, %s",
                     ui,
                     chargenNummer,
                     medikamentenName,
@@ -91,7 +95,8 @@ public class Medikament {
                     hersteller,
                     darreichungsform,
                     dosierung,
-                    ablaufDatum.toString());
+                    ablaufDatum.toString(),
+                    lagerortId.toString());
     }
 
     public static class Builder {
@@ -105,6 +110,7 @@ public class Medikament {
         private Darreichungsform darreichungsform;
         private Dosierung dosierung;
         private YearMonth ablaufDatum;
+        private LagerortID lagerortId;
 
         public Builder(UniqueIdentifier ui) {
             if (ui == null) {
@@ -158,6 +164,11 @@ public class Medikament {
             return this;
         }
 
+        public Builder lagerortId(LagerortID lagerortId) {
+            this.lagerortId = lagerortId;
+            return this;
+        }
+
         public Medikament build() {
             if (serienNummer == null) {
                 throw new IllegalStateException("Seriennummer darf nicht null sein!");
@@ -170,6 +181,9 @@ public class Medikament {
             }
             if (ablaufDatum == null) {
                 throw new IllegalStateException("Ablaufdatum muss gesetzt sein!");
+            }
+            if (lagerortId == null || lagerortId == null) {
+                throw new IllegalStateException("Lagerort muss angegeben sein!");
             }
             return new Medikament(this);
         }

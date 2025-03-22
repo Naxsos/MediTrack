@@ -6,7 +6,6 @@ public final class PZN {
     private final int nummer;
 
     public PZN(int nummer) {
-        // Validierung der PZN (z.B. Länge, Format)
         if (nummer < 1000000 || nummer > 99999999) {
             throw new IllegalArgumentException("Ungültige PZN: " + nummer);
         }

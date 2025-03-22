@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.time.LocalDate;
 import java.util.List;
 
 public class SendeErinnerungMedikamentlaeuftAb {
@@ -20,7 +19,7 @@ public class SendeErinnerungMedikamentlaeuftAb {
     }
 
     public void sendeErinnerungen() {
-        List<Medikament> ablaufendeMedikamente = listeInZeitraumAblaufenderMedikamenteUseCase.wirdIn2WochenAblaufen();
+        List<Medikament> ablaufendeMedikamente = listeInZeitraumAblaufenderMedikamenteUseCase.findeMedikamenteDieInXWochenAblaufen(2);
         List<Medikament> abgelaufeneMedikamente = abgelaufeneMedikamenteUseCase.abgelaufeneMedikamente();
         // (Wer "wirklich" E‑Mails verschicken will, kann hier ein Notification-Interface ansprechen)
 

@@ -1,6 +1,5 @@
 package org.example;
 
-import javax.swing.text.html.parser.Parser;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,6 +9,7 @@ import java.nio.file.StandardOpenOption;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class DateiMedikamenteSpeicher implements MedikamenteSpeicher {
@@ -54,7 +54,7 @@ public class DateiMedikamenteSpeicher implements MedikamenteSpeicher {
     }
 
     @Override
-    public Medikament findeMedikamentViaUI(UniqueIdentifier ui) {
+    public Optional<Medikament> findeMedikamentViaUI(UniqueIdentifier ui) {
         return null;
     }
 
@@ -73,6 +73,27 @@ public class DateiMedikamenteSpeicher implements MedikamenteSpeicher {
         return List.of();
     }
 
+    @Override
+    public List<Medikament> findeViaLagerortId(String lagerortId) {
+        List<Medikament> medikamenteMitLagerort = new ArrayList<>();
+        try {
+            List<String> alleEinträge = Files.readAllLines(Paths.get(datei.getPath()));
+            for (String eintrag : alleEinträge) {
+                if (eintrag.contains(lagerortId)) {
+                    medikamenteMitLagerort.add(parseMedikament(eintrag));
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Fehler beim Suchen nach Lagerort: " + e.getMessage());
+        }
+        return medikamenteMitLagerort;
+    }
+
+    @Override
+    public Medikament aktualisiereLagerort(UniqueIdentifier medikamentId, String neuerLagerortId) {
+        return null;
+    }
+
     private Medikament parseMedikament(String eintrag) {
         List<String> listeFuerWerteProEintrag = List.of(eintrag.split(","));
         UniqueIdentifier ui = UniqueIdentifier.fromString(listeFuerWerteProEintrag.get(0));
@@ -83,13 +104,18 @@ public class DateiMedikamenteSpeicher implements MedikamenteSpeicher {
         String darreichungsform = listeFuerWerteProEintrag.get(5).trim();
         String dosierung = listeFuerWerteProEintrag.get(6).trim();
         YearMonth ablaufDatum = LocalDateParser.parseDate(listeFuerWerteProEintrag.get(7).trim(), Konstanten.ABLAUF_DATUM_FORMAT);
+        LagerortID lagerortId = LagerortID.fromString(listeFuerWerteProEintrag.get(8).trim());
+
+        
         return new Medikament.Builder(ui)
                 .serienNummer(new Seriennummer(ui.getSerienNummer()))
                 .pzn(new PZN(ui.getPzn()))
                 .chargenNummer(new Chargennummer(chargenNummer))
                 .medikamentenName(medikamentenName)
                 .wirkstoffBezeichnung(wirkstoffBezeichnung)
+                .hersteller(hersteller)
                 .ablaufDatum(ablaufDatum)
+                .lagerortId(lagerortId)
                 .build();
     }
 

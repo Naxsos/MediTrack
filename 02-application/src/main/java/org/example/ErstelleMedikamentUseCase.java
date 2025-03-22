@@ -1,4 +1,5 @@
 package org.example;
+import org.example.LagerortID;
 
 import java.time.YearMonth;
 
@@ -9,9 +10,10 @@ public class ErstelleMedikamentUseCase {
         this.medikamenteSpeicher = medikamenteSpeicher;
     }
 
-    public Medikament erstelleMedikament(int pzn, String serienNummer, String chargenNummer, String medikamentenName, String wirkstoffBezeichnung, String ablaufDatum){
+    public Medikament erstelleMedikament(int pzn, String serienNummer, String chargenNummer, String medikamentenName, String wirkstoffBezeichnung, String ablaufDatum, String lagerortId){
         YearMonth formatiertesAblaufDatum = LocalDateParser.parseDate(ablaufDatum, Konstanten.ABLAUF_DATUM_FORMAT);
         UniqueIdentifier ui = erstelleUI(pzn,serienNummer, chargenNummer,formatiertesAblaufDatum);
+        LagerortID lagerortID = LagerortID.fromString(lagerortId);
 
         Medikament medikament = new Medikament.Builder(ui)
                 .serienNummer(new Seriennummer(serienNummer))
@@ -20,6 +22,7 @@ public class ErstelleMedikamentUseCase {
                 .medikamentenName(medikamentenName)
                 .wirkstoffBezeichnung(wirkstoffBezeichnung)
                 .ablaufDatum(formatiertesAblaufDatum)
+                .lagerortId(lagerortID)
                 .build();
         System.out.println(medikament);
         return medikamenteSpeicher.speichern(medikament);
