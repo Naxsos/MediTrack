@@ -6,3 +6,16 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+
+# Ignoriere alle kompilierten .class-Dateien im gesamten Projekt
+**/*.class
+
+# Ignoriere Maven- und Gradle-Output-Ordner (enthalten die .class-Dateien)
+**/target/
+**/build/
+
+/04-abstraction/target/classes/org/example
+/03-domain/target/classes/org/example
+/02-application/target/classes/org/example
+/01-adapter/target/classes/org/example
+/00-plugin/target/classes/org/example

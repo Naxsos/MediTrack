@@ -57,8 +57,10 @@ public class MainMitNotionBenachrichtigung {
 
         new MediTrackUI(medikamenteController, lagerorteController);
 
+        
         NotionBenachrichtigung notionBenachrichtigung = new NotionBenachrichtigung();
         ErinnerungUndWarnungBeiAblaufUseCase sendeErinnerungMedikamentlaeuftAb = new ErinnerungUndWarnungBeiAblaufUseCase(dateiMedikamenteSpeicher,notionBenachrichtigung);
-        sendeErinnerungMedikamentlaeuftAb.sendeErinnerungen();
+        //sendeErinnerungMedikamentlaeuftAb.sendeErinnerungen();
+        AllgemeinerScheduler allgemeinerScheduler = new AllgemeinerScheduler(24, dateiMedikamenteSpeicher, notionBenachrichtigung);
     }
 } 
