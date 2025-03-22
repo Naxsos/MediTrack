@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/02-application/pom.xml" />
         <option value="$PROJECT_DIR$/03-domain/pom.xml" />
         <option value="$PROJECT_DIR$/04-abstraction/pom.xml" />
+        <option value="$PROJECT_DIR$/Main/pom.xml" />
       </list>
     </option>
   </component>

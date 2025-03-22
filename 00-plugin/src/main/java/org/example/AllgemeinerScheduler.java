@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AllgemeinerScheduler {
 
-    public AllgemeinerScheduler() throws SchedulerException {
+    /*public AllgemeinerScheduler() throws SchedulerException {
 
         JobDetail jobDetail = JobBuilder.newJob()
                 .withIdentity("myDailyJob", "group1")
@@ -52,6 +52,6 @@ public class AllgemeinerScheduler {
         executor.scheduleAtFixedRate(task, 0, 10, TimeUnit.SECONDS);
 
 
-    }
+    }*/
 
 }

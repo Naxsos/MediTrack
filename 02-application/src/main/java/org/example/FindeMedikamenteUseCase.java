@@ -22,4 +22,8 @@ public class FindeMedikamenteUseCase {
         return medikamenteSpeicher.findeViaMedikamentName(name);
     }
 
+    public List<Medikament> listeAllerMedikamente() {
+        return medikamenteSpeicher.findeAlleMedikamente();
+    }
+
 }

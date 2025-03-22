@@ -7,6 +7,8 @@ import java.util.Optional;
 public interface MedikamenteSpeicher {
     Medikament speichern(Medikament medikament);
     void entfernenViaUI(String ui);
+    boolean existiert(UniqueIdentifier ui);
+    
     Optional<Medikament> findeMedikamentViaUI(UniqueIdentifier ui);
     List<Medikament> findeViaMedikamentName(String name);             // Suche nach Medikamentennamen
     List<Medikament> findeViaWirkstoff(String wirkstoff);

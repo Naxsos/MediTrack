@@ -6,7 +6,7 @@ import java.util.concurrent.*;
 
 public class SendeErinnerungScheduler {
 
-        MedikamenteSpeicher medikamenteSpeicher;
+        /*MedikamenteSpeicher medikamenteSpeicher;
         SendeErinnerungMedikamentlaeuftAb sendeErinnerungMedikamenteUseCase;
 
         public SendeErinnerungScheduler(MedikamenteSpeicher medikamenteSpeicher) {
@@ -16,5 +16,5 @@ public class SendeErinnerungScheduler {
 
         public void sendeErinnerung() {
                 sendeErinnerungMedikamenteUseCase.sendeErinnerungen();
-        }
+        }*/
 }

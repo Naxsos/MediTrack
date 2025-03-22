@@ -81,6 +81,28 @@ public class UniqueIdentifier {
                     chargenNummer,
                     ablaufDatum.format(DateTimeFormatter.ofPattern(Konstanten.ABLAUF_DATUM_FORMAT)));
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        
+        UniqueIdentifier that = (UniqueIdentifier) o;
+        
+        if (pzn != that.pzn) return false;
+        if (!serienNummer.equals(that.serienNummer)) return false;
+        if (!chargenNummer.equals(that.chargenNummer)) return false;
+        return ablaufDatum.equals(that.ablaufDatum);
+    }
+    
+    @Override
+    public int hashCode() {
+        int result = pzn;
+        result = 31 * result + serienNummer.hashCode();
+        result = 31 * result + chargenNummer.hashCode();
+        result = 31 * result + ablaufDatum.hashCode();
+        return result;
+    }
 }
 
 

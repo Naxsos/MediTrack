@@ -28,14 +28,20 @@ public class DateiMedikamenteSpeicher implements MedikamenteSpeicher {
 
     @Override
     public Medikament speichern(Medikament medikament) {
+
         String line = medikament.toString();
         String filepath = datei.getPath();
+        
         try {
-            Files.writeString(Paths.get(filepath), line + System.lineSeparator(), StandardOpenOption.APPEND, StandardOpenOption.CREATE);
-        } catch (IOException ex) {
-            System.out.printf("Fehler beim Speichern des Medikaments: %s%n", ex.getMessage());
+            // Zuerst prüfen, ob der Lagerort bereits existiert
+            if (!existiert(medikament.getUi())) {
+                Files.writeString(Paths.get(filepath), line + System.lineSeparator(), StandardOpenOption.APPEND, StandardOpenOption.CREATE);
+            }
+            return medikament;
+        } catch (IOException e) {
+            System.err.printf("Fehler beim Speichern des Medikaments: %s%n", e.getMessage());
+            throw new RuntimeException("Fehler beim Speichern des Medikaments", e);
         }
-        return medikament;
     }
 
     @Override
@@ -55,22 +61,69 @@ public class DateiMedikamenteSpeicher implements MedikamenteSpeicher {
 
     @Override
     public Optional<Medikament> findeMedikamentViaUI(UniqueIdentifier ui) {
-        return null;
+        try {
+            List<String> alleEinträge = Files.readAllLines(Paths.get(datei.getPath()));
+            for (String eintrag : alleEinträge) {
+                Medikament medikament = parseMedikament(eintrag);
+                if (medikament.getUi().equals(ui)) {
+                    return Optional.of(medikament);
+                }
+            }
+        } catch (IOException e) {
+            System.err.printf("Fehler beim Suchen nach Medikament via UI: %s%n", e.getMessage());
+        }
+        return Optional.empty();
     }
 
     @Override
     public List<Medikament> findeViaMedikamentName(String name) {
-        return List.of();
+        List<Medikament> gefundeneMedikamente = new ArrayList<>();
+        try {
+            List<String> alleEinträge = Files.readAllLines(Paths.get(datei.getPath()));
+            for (String eintrag : alleEinträge) {
+                Medikament medikament = parseMedikament(eintrag);
+                if (medikament.getMedikamentenName().toLowerCase().contains(name.toLowerCase())) {
+                    gefundeneMedikamente.add(medikament);
+                }
+            }
+        } catch (IOException e) {
+            System.err.printf("Fehler beim Suchen nach Medikament via Name: %s%n", e.getMessage());
+        }
+        return gefundeneMedikamente;
     }
 
     @Override
     public List<Medikament> findeViaWirkstoff(String wirkstoff) {
-        return List.of();
+        List<Medikament> gefundeneMedikamente = new ArrayList<>();
+        try {
+            List<String> alleEinträge = Files.readAllLines(Paths.get(datei.getPath()));
+            for (String eintrag : alleEinträge) {
+                Medikament medikament = parseMedikament(eintrag);
+                if (medikament.getWirkstoffBezeichnung().toLowerCase().contains(wirkstoff.toLowerCase())) {
+                    gefundeneMedikamente.add(medikament);
+                }
+            }
+        } catch (IOException e) {
+            System.err.printf("Fehler beim Suchen nach Medikament via Wirkstoff: %s%n", e.getMessage());
+        }
+        return gefundeneMedikamente;
     }
 
     @Override
     public List<Medikament> findByVerfallsdatumBefore(YearMonth date) {
-        return List.of();
+        List<Medikament> ablaufendeMedikamente = new ArrayList<>();
+        try {
+            List<String> alleEinträge = Files.readAllLines(Paths.get(datei.getPath()));
+            for (String eintrag : alleEinträge) {
+                Medikament medikament = parseMedikament(eintrag);
+                if (medikament.getAblaufDatum().isBefore(date) || medikament.getAblaufDatum().equals(date)) {
+                    ablaufendeMedikamente.add(medikament);
+                }
+            }
+        } catch (IOException e) {
+            System.err.printf("Fehler beim Suchen nach ablaufenden Medikamenten: %s%n", e.getMessage());
+        }
+        return ablaufendeMedikamente;
     }
 
     @Override
@@ -91,7 +144,39 @@ public class DateiMedikamenteSpeicher implements MedikamenteSpeicher {
 
     @Override
     public Medikament aktualisiereLagerort(UniqueIdentifier medikamentId, String neuerLagerortId) {
-        return null;
+        try {
+            // Medikament finden
+            Optional<Medikament> optMedikament = findeMedikamentViaUI(medikamentId);
+            if (optMedikament.isEmpty()) {
+                System.err.println("Medikament mit ID " + medikamentId + " nicht gefunden.");
+                return null;
+            }
+            
+            Medikament altMedikament = optMedikament.get();
+            
+            // Neues Medikament mit aktualisiertem Lagerort erstellen
+            Medikament neuMedikament = new Medikament.Builder(altMedikament.getUi())
+                .serienNummer(altMedikament.getSerienNummer())
+                .pzn(altMedikament.getPzn())
+                .chargenNummer(altMedikament.getChargenNummer())
+                .medikamentenName(altMedikament.getMedikamentenName())
+                .wirkstoffBezeichnung(altMedikament.getWirkstoffBezeichnung())
+                .hersteller(altMedikament.getHersteller())
+                .ablaufDatum(altMedikament.getAblaufDatum())
+                .lagerortId(LagerortID.fromString(neuerLagerortId))
+                .build();
+            
+            // Altes Medikament entfernen
+            entfernenViaUI(medikamentId.toString());
+            
+            // Neues Medikament speichern
+            speichern(neuMedikament);
+            
+            return neuMedikament;
+        } catch (Exception e) {
+            System.err.printf("Fehler beim Aktualisieren des Lagerorts: %s%n", e.getMessage());
+            return null;
+        }
     }
 
     private Medikament parseMedikament(String eintrag) {
@@ -133,4 +218,14 @@ public class DateiMedikamenteSpeicher implements MedikamenteSpeicher {
         return alleMedikamente;
     }
 
+    @Override
+    public boolean existiert(UniqueIdentifier ui) {
+        List<Medikament> alleMedikamente = findeAlleMedikamente();
+        for (Medikament medikament : alleMedikamente) {
+            if (medikament.getUi().equals(ui)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

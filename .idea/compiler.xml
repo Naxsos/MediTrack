@@ -10,6 +10,7 @@
         <module name="04-abstraction" />
         <module name="01-adapter" />
         <module name="00-plugin" />
+        <module name="Main" />
         <module name="02-application" />
       </profile>
     </annotationProcessing>
@@ -19,6 +20,7 @@
       <module name="00-plugin" options="-parameters" />
       <module name="01-adapter" options="" />
       <module name="02-application" options="" />
+      <module name="Main" options="-parameters" />
     </option>
   </component>
 </project>
