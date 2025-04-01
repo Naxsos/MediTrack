@@ -35,7 +35,7 @@ public class UniqueIdentifier {
 
     public static UniqueIdentifier fromString(String identifierStr) {
         if (identifierStr == null || identifierStr.trim().isEmpty()) {
-            throw new IllegalArgumentException("Input string is null or empty.");
+            throw new IllegalArgumentException("Eingabe darf nicht null oder leer sein.");
         }
 
         String[] tokens = identifierStr.trim().split("\\s+");
@@ -46,7 +46,7 @@ public class UniqueIdentifier {
 
         try {
             if (!Konstanten.PREFIX_PZN.equals(tokens[0])) {
-                throw new IllegalArgumentException("Falcher Präfix für PNZ '" + Konstanten.PREFIX_PZN + "', gefunden '" + tokens[0] + "'");
+                throw new IllegalArgumentException("Falscher Präfix für PNZ. Erwartet '" + Konstanten.PREFIX_PZN + "', gefunden '" + tokens[0] + "'");
             }
             int pzn = Integer.parseInt(tokens[1]);
 

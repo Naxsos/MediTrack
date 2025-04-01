@@ -61,6 +61,6 @@ public class MainMitNotionBenachrichtigung {
         NotionBenachrichtigung notionBenachrichtigung = new NotionBenachrichtigung();
         ErinnerungUndWarnungBeiAblaufUseCase sendeErinnerungMedikamentlaeuftAb = new ErinnerungUndWarnungBeiAblaufUseCase(dateiMedikamenteSpeicher,notionBenachrichtigung);
         //sendeErinnerungMedikamentlaeuftAb.sendeErinnerungen();
-        AllgemeinerScheduler allgemeinerScheduler = new AllgemeinerScheduler(24, dateiMedikamenteSpeicher, notionBenachrichtigung);
+        AllgemeinerZeitplaner allgemeinerScheduler = new AllgemeinerZeitplaner(24, dateiMedikamenteSpeicher, notionBenachrichtigung);
     }
 } 

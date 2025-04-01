@@ -2,6 +2,7 @@ package org.example;
 
 import org.quartz.*;
 
+import java.time.YearMonth;
 import java.util.List;
 
 public class MainMitDateiNotionBenachrichtigung {
@@ -55,10 +56,32 @@ public class MainMitDateiNotionBenachrichtigung {
 
         LagerorteController lagerorteController = new LagerorteController(lagerorteVerwaltenUseCase);
 
+        int pznNummer = 12345678;
+        String seriennummerWert = "SN12345";
+        String chargennummerWert = "CH789";
+        YearMonth ablaufDatum = YearMonth.now().plusMonths(12);
+        UniqueIdentifier ui = new UniqueIdentifier(pznNummer, seriennummerWert, chargennummerWert, ablaufDatum);
+
+        Medikament m = new Medikament.Builder(ui)
+                .serienNummer(new Seriennummer(seriennummerWert))
+                .pzn(new PZN(pznNummer))
+                .chargenNummer(new Chargennummer(chargennummerWert))
+                .medikamentenName(null)
+                .wirkstoffBezeichnung("Testwirkstoff")
+                .hersteller("Testhersteller")
+                .darreichungsform(null)
+                .dosierung(new Dosierung(Masseinheit.MILLIGRAMM, 100, Intervall.PRO_TAG, 1, Zeitperiode.TAGE, 1))
+                .ablaufDatum(ablaufDatum)
+                .lagerortId(LagerortID.fromString("1-A"))
+                .build();
+        System.out.println(m.toString());
+
         new MediTrackUI(medikamenteController, lagerorteController);
 
         NotionBenachrichtigung notionBenachrichtigung = new NotionBenachrichtigung();
         ErinnerungUndWarnungBeiAblaufUseCase sendeErinnerungMedikamentlaeuftAb = new ErinnerungUndWarnungBeiAblaufUseCase(dateiMedikamenteSpeicher,notionBenachrichtigung);
         sendeErinnerungMedikamentlaeuftAb.sendeErinnerungen();
+
+
     }
 } 

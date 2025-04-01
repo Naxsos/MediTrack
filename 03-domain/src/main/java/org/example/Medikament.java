@@ -155,6 +155,9 @@ public class Medikament {
         }
 
         public Builder dosierung(Dosierung dosierung) {
+            if (dosierung == null) {
+                throw new IllegalArgumentException("Dosierung darf nicht null sein!");
+            }
             this.dosierung = dosierung;
             return this;
         }
@@ -171,13 +174,29 @@ public class Medikament {
 
         public Medikament build() {
             if (serienNummer == null) {
-                throw new IllegalStateException("Seriennummer darf nicht null sein!");
+                throw new IllegalStateException("Seriennummer muss gesetzt sein!");
             }
             if (pzn == null) {
-                throw new IllegalStateException("PZN darf nicht null sein!");
+                throw new IllegalStateException("PZN muss gesetzt sein!");
             }
             if (chargenNummer == null) {
-                throw new IllegalStateException("Chargennummer darf nicht null sein!");
+                throw new IllegalStateException("Chargennummer muss gesetzt sein!");
+            }
+            if (medikamentenName == null || medikamentenName.trim().isEmpty()) {
+                throw new IllegalStateException("Medikamentename muss gesetzt sein!");
+            }
+            if (wirkstoffBezeichnung == null || wirkstoffBezeichnung.trim().isEmpty()) {
+                throw new IllegalStateException("Wirkstoffbezeichnung muss gesetzt sein!");
+            }
+            if (dosierung == null ) {
+                Dosierung d = new Dosierung(Masseinheit.UNBEKANNT, 0, Intervall.UNBEKANNT, 1, Zeitperiode.UNBEKANNT, 0);
+                this.dosierung = d;
+            }
+            if (darreichungsform == null) {
+                this.darreichungsform = Darreichungsform.UNDEFINIERT;
+            }
+            if (hersteller == null || hersteller.trim().isEmpty()) {
+                this.hersteller = "Unbekannt";
             }
             if (ablaufDatum == null) {
                 throw new IllegalStateException("Ablaufdatum muss gesetzt sein!");

@@ -49,13 +49,19 @@ public class DateiMedikamenteSpeicher implements MedikamenteSpeicher {
         String dateipfad = datei.getPath();
         Path pfad = Paths.get(dateipfad);
         try {
-            List<String> gefilterteDateiZeilen = Files.readAllLines(pfad).stream()
+            List<String> alleZeilen = Files.readAllLines(pfad);
+            List<String> gefilterteDateiZeilen = alleZeilen.stream()
                     .filter(line -> !line.startsWith(ui + ",")) // Filtert Zeilen mit der ID aus
                     .collect(Collectors.toList());
 
+            // Prüfe, ob die UI existiert
+            if (alleZeilen.size() == gefilterteDateiZeilen.size()) {
+                throw new IllegalArgumentException("Medikament mit UI " + ui + " existiert nicht");
+            }
+
             Files.write(pfad, gefilterteDateiZeilen, StandardOpenOption.TRUNCATE_EXISTING);
         } catch (NumberFormatException | IOException ex) {
-            System.err.printf("Fehler beim Laden der Datei: %s%n", ex.getLocalizedMessage());
+            throw new IllegalStateException("Fehler beim Entfernen des Medikaments: " + ex.getLocalizedMessage(), ex);
         }
     }
 

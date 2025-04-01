@@ -13,7 +13,8 @@ public enum Darreichungsform {
     INFUSION("Infusion"),
     INHALATION("Inhalation"),
     PFLASTER("Pflaster"),
-    TROPFEN("Tropfen");
+    TROPFEN("Tropfen"),
+    UNDEFINIERT("-");
 
     final String text;
 

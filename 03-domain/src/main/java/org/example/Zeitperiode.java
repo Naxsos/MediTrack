@@ -4,7 +4,8 @@ public enum Zeitperiode {
     TAGE("Tage"),
     WOCHEN("Wochen"),
     MONATE("Monat"),
-    EINMALIG("Einmalig");
+    EINMALIG("Einmalig"),
+    UNBEKANNT("-");
 
     String beschreibung;
 

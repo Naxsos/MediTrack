@@ -6,7 +6,7 @@ public final class Chargennummer {
     private final String nummer;
 
     public Chargennummer(String nummer) {
-        if (nummer == null || nummer.length() >= 9) {
+        if (nummer == null || nummer.isEmpty() || nummer.length() >= 9) {
             throw new IllegalArgumentException("Ungültige Chargennummer: " + nummer);
         }
         this.nummer = nummer;

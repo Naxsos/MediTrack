@@ -8,7 +8,7 @@ public class LagerortID {
     }
 
     public static LagerortID fromString(String id) {
-        if (!isValidFormat(id)) {
+        if (id == null || !isValidFormat(id)) {
             throw new IllegalArgumentException("Falsches Format für LagerortID. Erwartetes Format: stockwerk-raumnummer");
         }
         return new LagerortID(id);

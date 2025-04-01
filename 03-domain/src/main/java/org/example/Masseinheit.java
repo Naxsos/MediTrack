@@ -8,7 +8,8 @@ public enum Masseinheit {
     MILLILITER("ml", "Häufig für Flüssigkeiten wie Sirup"),
     LITER("l", "Für größere Volumina, z. B. Infusionen"),
     STUECK("Stück", "Feste Darreichungsformen wie Tabletten"),
-    EINHEITEN("I.E.", "Wird zum beispiel für Haparinspritzen genutzt");
+    EINHEITEN("I.E.", "Wird zum beispiel für Haparinspritzen genutzt"),
+    UNBEKANNT("-", "-");
 
 
     private String kurzform;
