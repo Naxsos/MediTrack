@@ -5,12 +5,12 @@ import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import java.util.Properties;
 
-public class EmailBenachrichtigung {
+public class EmailBenachrichtigung implements Nachrichtenformat {
 
     final private static String from = "your_gmail_address@gmail.com";
     final private static String password = "your_app_password";
 
-    public static void sendeEmail(String to, String subject, String body) {
+    private static void sendeEmail(String to, String subject, String body) {
         Properties props = konfiguriereEmailProperties();
         Session session = erstelleEmailSession(props);
         Message message = erstelleEmailNachricht(session, to, subject, body);
@@ -60,6 +60,16 @@ public class EmailBenachrichtigung {
         }catch (MessagingException e){
             System.err.println("Fehler beim Senden der E-Mail: " + e.getMessage());
         }
+    }
+
+    @Override
+    public boolean sendeNachricht(Medikament medikament) {
+        String to = "your_gmail_address@gmail.com";
+        String subject = "Medikament abgelaufen";
+        String body = "Das Medikament " + medikament.getMedikamentenName() + " hat am " + medikament.getAblaufDatum() + " abgelaufen.";
+        
+        sendeEmail(to, subject, body);
+        return true;
     }
 
 }
