@@ -66,7 +66,7 @@ public class MainMitDateiNotionBenachrichtigung {
                 .serienNummer(new Seriennummer(seriennummerWert))
                 .pzn(new PZN(pznNummer))
                 .chargenNummer(new Chargennummer(chargennummerWert))
-                .medikamentenName(null)
+                .medikamentenName("Test")
                 .wirkstoffBezeichnung("Testwirkstoff")
                 .hersteller("Testhersteller")
                 .darreichungsform(null)
@@ -76,10 +76,11 @@ public class MainMitDateiNotionBenachrichtigung {
                 .build();
         System.out.println(m.toString());
 
+        // Einfach nur die UI erstellen - alles andere passiert im Konstruktor
         new MediTrackUI(medikamenteController, lagerorteController);
 
-        NotionBenachrichtigung notionBenachrichtigung = new NotionBenachrichtigung();
-        ErinnerungUndWarnungBeiAblaufUseCase sendeErinnerungMedikamentlaeuftAb = new ErinnerungUndWarnungBeiAblaufUseCase(dateiMedikamenteSpeicher,notionBenachrichtigung);
+        NotionBenachrichtigungDatei notionBenachrichtigungDatei = new NotionBenachrichtigungDatei();
+        ErinnerungUndWarnungBeiAblaufUseCase sendeErinnerungMedikamentlaeuftAb = new ErinnerungUndWarnungBeiAblaufUseCase(dateiMedikamenteSpeicher,notionBenachrichtigungDatei);
         sendeErinnerungMedikamentlaeuftAb.sendeErinnerungen();
 
 

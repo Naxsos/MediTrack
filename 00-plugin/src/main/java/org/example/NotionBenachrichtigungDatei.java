@@ -8,7 +8,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import io.github.cdimascio.dotenv.Dotenv;
 
-public class NotionBenachrichtigung implements Nachrichtenformat {
+public class NotionBenachrichtigungDatei implements Nachrichtenformat {
 
     private String inhaltDerNachrichtalsJson ;
     @Override
@@ -32,6 +32,22 @@ public class NotionBenachrichtigung implements Nachrichtenformat {
             JsonObject jsonBody = createJson(medikament);
             String jsonInputString = jsonBody.toString();
             inhaltDerNachrichtalsJson = jsonInputString;
+            
+            // Schreibe JSON-String in eine Datei
+            try {
+                java.nio.file.Path path = java.nio.file.Paths.get("notion_request.json");
+                java.nio.file.Files.writeString(path, jsonInputString, 
+                    java.nio.file.StandardOpenOption.CREATE, 
+                    StandardOpenOption.APPEND);
+                System.out.println("JSON-String in Datei 'notion_request.json' geschrieben.");
+            } catch (Exception e) {
+                System.err.println("Fehler beim Schreiben in Datei: " + e.getMessage());
+            }
+
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInputString.toString().getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
 
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_CREATED) {
