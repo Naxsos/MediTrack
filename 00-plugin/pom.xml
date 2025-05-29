@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
 
-    <groupId>org.example</groupId>
+    <groupId>de.meditrack</groupId>
     <artifactId>00-plugin</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -24,25 +24,25 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.example</groupId>
+            <groupId>de.meditrack</groupId>
             <artifactId>01-adapter</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.example</groupId>
+            <groupId>de.meditrack</groupId>
             <artifactId>03-domain</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.example</groupId>
+            <groupId>de.meditrack</groupId>
             <artifactId>04-abstraction</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.example</groupId>
+            <groupId>de.meditrack</groupId>
             <artifactId>02-application</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
