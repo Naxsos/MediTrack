@@ -6,7 +6,7 @@ import java.util.List;
 
 public class MainMitNotionBenachrichtigung {
     public static void main(String[] args) throws SchedulerException {
-        DateiMedikamenteSpeicher dateiMedikamenteSpeicher = new DateiMedikamenteSpeicher("test.txt");
+        DateiMedikamenteSpeicher dateiMedikamenteSpeicher = new DateiMedikamenteSpeicher("MedikamenteSpeicher.txt");
         
 
         DateiLagerortSpeicher dateiLagerortSpeicher = new DateiLagerortSpeicher("lagerorte.txt");
